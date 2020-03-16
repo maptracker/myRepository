@@ -1,0 +1,204 @@
+<html>
+<head>
+  <title><NAME> Resources</title>
+  <style>
+  .code { 
+    font-family: monospace;
+    color: #060;
+    background-color: #eff;
+    font-weight: bold;
+  }
+  /* restrict block width: https://stackoverflow.com/a/18134820 */
+  pre { display: table; }
+  .file { font-family: monospace; color: navy; }
+  h3 { color: navy; background-color: #ff9; }
+  </style>
+</head>
+<body>
+
+<h2><NAME> Resources</h2>
+
+This folder contains resources used by the <i><DESCRIPTION></i>
+in-house R package repository. To see a grid of all available
+packages, just visit the <a href='../'>parent page</a>.
+
+<h3>Installing packages from this repository</h3>
+
+If you wish to simply use this repository, all you need to do is run
+the following command from an R session:
+
+<pre style="font-size: 1.3em; border: red solid 2px; padding: 3px;" class="code">source("<CONFSCRIPT>")</pre>
+
+... and then you can use <span class="code">install.packages()</span>
+"as normal" (no need to specify the <span class="code">repos=()</span>
+parameter).
+
+<h3>Using the repository grid</h3>
+
+Available packages are presented in an interactive table. The header
+row of each column has interactive functionality:
+
+<ul>
+
+<li> A filter icon on the right allows free text filtering, as well as
+category faceting for some columns.
+
+<li> A "&hellip;" button indicates that some text has been truncated;
+Click in the header to expand all rows, or click the same button in an
+individual row to expand just that cell.
+
+<li> The first column also includes buttons on the left side; one to
+reset all filters, and the other to close all open dialog boxes.
+
+</ul>
+
+Most columns should be self-explanatory; Some are hyperlinked to
+provide additional resources:
+
+<ul>
+
+<li> A hyperlinked <b>Package</b> name will lead to the package's
+"home page". To set this in your own packages, use the "URL:" field in
+the <span class='file'>DESCRIPTION</span> file.
+
+<li> <b>Maintainer</b> hyperlinks will open a new email window to the
+author. If your setup has defined your internal "OrgDomain", you will
+also be warned in the email body if the maintainer is outside your
+organization.
+
+<li> <b>Doc</b> Hyperlinks will open a PDF file presenting all help
+topics.
+
+<li> The <b>Version</b> hyperlinks will download the
+appropriate <span class="file">.tar.gz</span> archive for the package.
+
+
+</ul>
+
+<h3>Additional utilities for repository users</h3>
+
+If you have installed the myRepository package
+using <span class="code">install.packages("myRepository")</span> there
+are a few additional utilities that might be of use to you:
+
+<pre class="code">
+## 'Remember' the setup script to avoid source()ing each time you start R:
+rememberMyRepo()
+
+## Find updates for your installed packages available in your repository:
+findMyUpdates()
+
+## Get a data.frame of all packages held on your internal repository:
+getMyManifest()
+</pre>
+
+<h3>Installing packages to this repository</h3>
+
+If you are a developer that wishes to add packages to this repo:
+
+<ol>
+
+<li> Talk to your organization to determine their submission policy
+
+<li> <span class="code">install.packages("myRepository")</span>, if
+you have not done so already
+
+<li> <span class="code">source("<CONFSCRIPT>")</span> the
+configuration code, as above.
+
+<li> Build your package into a tar.gz package file, and copy/save it
+someplace available on the file system used by this repository
+
+<ul>
+
+  <li> <span class="code">myRepository::buildAndCheck()</span> is very
+  handy for this!
+
+  <li> Talk to your R gurus to find out which servers mount the
+  relevant file system. Gurus: you may wish to edit this bullet to
+  indicate which systems these are.
+
+</ul>
+
+<li>Call <span class="code">myRepository::addPackageToRepo("/foo/bar/this/that/myNewCoolPackage_2.11.3.tar.gz")</span>
+to copy the file into <span class='file'>src/contrib/</span> (also
+assures team-friendly permissions)
+
+<li> Call <span class="code">myRepository::updateMyRepo()</span> to
+register the packages and update the web page's grid of available
+pacakges.
+
+</ol>
+
+
+<h3>Package Development</h3>
+
+Additionally, the following functions in the myRepository module may
+be of use to you if you are an R package developer:
+
+<pre class="code">
+createNewPackage()        # Builds an "improved" empty package skeleton
+currentPackageStatus()    # Reports package version relative to your repo
+incrementPackageVersion() # Increments version and date in DESCRIPTION
+currentPackageName()      # Details of package including VC info
+
+## Heavy-weight wrapper that builds, checks, tests and summarizes
+## package construction. Generates PDF documentation and suggests
+## follow-on version control commands to run:
+buildAndCheck() 
+</pre>
+
+<h3>Additional files</h3>
+
+The following files may be of interest:
+
+<ul>
+
+<li> <a class="file" href="../src">../src</a> - <i>This is the "real"
+repository!</i> In particular, <a class="file"
+href="../src/contrib/">src/contrib</a> is where the tar.gz packages
+and the PACKAGES manifest are stored. This folder is populated
+by <span class="code">addPackageToRepo()</span> and the manifest is
+updated by <span class="code">updateMyRepo()</span>
+
+<li> <a href="configureRepo.R">configureRepo.R</a> - The configuration
+script that is source()ed to set up an R session to use this
+repository.
+
+  <ul>
+    <li>That file is actually a symlink into the
+    <a href="ConfigurationScripts">ConfigurationScripts</a> folder, which
+    holds date-stamped versions of each revision of the configuration
+    script.
+  </ul>
+  
+ <li> <a href="actionLog.txt">actionLog.txt</a> - A log of actions
+taken to update the repository,
+generally <span class="code">addPackageToRepo()</span>
+and <span class="code">updateMyRepo()</span>. If you are having
+trouble updating the repo, check here.
+
+<li> <a href="ignoreErrors.txt">ignoreErrors.txt</a> - A file listing
+"troublesome" packages that do not cleanly generate PDF files; These
+packages will have error messages silenced to avoid concerning your
+users.
+
+<li> <a href="tableHeader.html">tableHeader.html</a> - This is the
+header that appears above the package grid on the main web page. It
+can be editted to suit your needs.
+
+<li> <a href="extracted_DESCRIPTION">extracted_DESCRIPTION</a> - Holds
+DESCRIPTION files extracted from each package's tar.gz file; Needed to
+include Title and Description columns in the package grid
+
+<li> <a href="extracted_PDF">extracted_PDF</a> - Holds PDF
+documentation files for each version of each package added to the
+repository.
+
+<li> <a class="file" href="../archive">../archive</a> - Storage for
+packages that have been removed from the repository. These files are
+<b>not</b> available via <span class="code">install.packages()</span>.
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,13 @@
+## Ignore Errors file for <NAME> repository
+
+## If a package generates trivial errors during updateMyRepo() you can
+## list it here. For example, some packages cause problems during PDF
+## generation. The errors are not important but can alarm your
+## users. List them here to silence display of errors for those
+## packages. For example, this line:
+
+examplePackageNotActuallyReal
+
+## ... would prevent errors from being displayed while processing the
+## package named 'examplePackageNotActuallyReal'. Blank lines and
+## lines starting with a number sign are ignored.

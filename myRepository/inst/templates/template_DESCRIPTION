@@ -1,0 +1,48 @@
+RemoveMe: You should remove this block, it is instructional
+    only; Delete down to the 'DELETE-TO-HERE' line.
+    You should first, however, address the following sections - 
+      Title - should be a single short sentence describing the package
+      Authors@R - should list all the contributors. Be careful, the block
+        needs to be parsable R code, so mind parentheses, quotes and commas.
+        Should be at least one author, but can be more. Each person() block
+        starts with ("Given/First Name", "Last/Surname"), then has contact
+        email and 'role' flags, popular ones being -
+          cre=creator (and the 'Maintainer' contact), aut=author (major author),
+          ctb=contributor (minor author), cph=copyright holder (eg a company)
+      Description - Like title, but intended to be a more detailed description
+      URL - optional website for the package (eg a public repo). Can delete
+      BugReports - optional URL to issue tracker, can delete
+      Imports - Roxygen will NOT manage the Depends/Imports blocks for
+        you. You need to update the packages listed there
+        manually. Currently crayon and stats are listed, which are
+        used in the demo methods. Delete them if you are not using
+        them. If you know you're calling functions with '::', use
+        Imports to list packages. Otherwise use Depends. Mind your commas.
+    You may wish to change -
+      Version - you're starting as '0.0.1', can change (eg '1.0', '1.0.1', etc)
+      License - for an exhaustive list of options, see:
+        https://svn.r-project.org/R/trunk/share/licenses/license.db
+        Popular licenses are: MIT, LGPL-3, GPL-3, GPL-2
+    DELETE-TO-HERE
+Package: <NAME>
+Title: Do something useful to something else
+Version: 0.0.0
+Date: 1969-06-20
+Authors@R: c(
+    person("Joe", "Smith", email="joe.smith@example.com", role=c("aut", "cre")),
+    person("Sally", "Jones", email="sally.jonesexample.com", role=c("aut"))
+    )
+Description: Be verbose here. Describe what the package does, the situations
+    you anticipate it being used in. How it distinguishes itself from other
+    packages. Be free to highlight its strengths, but if it has limitations
+    this would be a helpful place to point them out or suggest other
+    packages that might be more appropriate.
+URL: https://github.com/username/reponame
+BugReports: https://github.com/username/reponame/issues
+License: GPL-3
+Encoding: UTF-8
+Depends:
+    R (>= 3.1)
+Imports:
+    crayon,
+    stats

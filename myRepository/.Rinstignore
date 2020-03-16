@@ -1,0 +1,10 @@
+## https://stackoverflow.com/a/13463722
+
+^#.+
+
+PubD-Disclosure-Approval.md
+
+.git
+.gitignore
+.+~
+

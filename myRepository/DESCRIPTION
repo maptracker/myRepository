@@ -1,0 +1,34 @@
+Package: myRepository
+Title: Utilities aiding package development and maintenance of your own internal R package repository
+Version: 1.34.0
+Date: 2019-09-17
+Authors@R: person("Charles", "Tilford", email = "charles.tilford@bms.com",
+                  role = c("aut", "cre"))
+Description: Includes functions to create an internal repository, add
+    .tar.gz pacakges to it and build supporting files like the
+    manifest. Also generates a "pretty" table summarizing the packages
+    that will be displayed when visiting the repository root
+    URL. Additional tools generate empty package structures with
+    example toy code to illustrate the use and misuse of Roxygen,
+    guidance on filling out DESCRIPTION, and testing examples. A
+    build-and-check method wraps up building and checking of the code.
+Depends:
+    R (>= 3.1)
+Imports:
+    devtools (>= 1.11.0),
+    utils,
+    callr,
+    crayon,
+    desc,
+    dynamictable,
+    openssl,
+    CatMisc (>= 0.8.5),
+    testthat,
+    roxygen2,
+    htmltools
+URL: https://biogit.pri.bms.com/tilfordc/myRepository
+BugReports: https://biogit.pri.bms.com/tilfordc/myRepository/issues
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
